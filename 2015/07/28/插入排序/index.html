@@ -3,14 +3,18 @@
 <head>
     <meta charset="utf-8">
     
-    <title>Tag: 排序 | Robin&#39; s Blog</title>
+    <title>插入排序 | Robin&#39; s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Robin' s Blog">
-<meta property="og:url" content="http://www.luorubin.top/tags/排序/index.html">
+    <meta name="description" content="基本思想每步将一个待排序的纪录，按其值的大小插入到前面已经排序的记录中适当位置上，直到全部插入完为止。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="插入排序">
+<meta property="og:url" content="http://www.luorubin.top/2015/07/28/插入排序/index.html">
 <meta property="og:site_name" content="Robin' s Blog">
+<meta property="og:description" content="基本思想每步将一个待排序的纪录，按其值的大小插入到前面已经排序的记录中适当位置上，直到全部插入完为止。">
+<meta property="og:updated_time" content="2016-12-18T16:02:39.564Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Robin' s Blog">
+<meta name="twitter:title" content="插入排序">
+<meta name="twitter:description" content="基本思想每步将一个待排序的纪录，按其值的大小插入到前面已经排序的记录中适当位置上，直到全部插入完为止。">
     
 
     
@@ -199,25 +203,21 @@
 </aside>
 
             
-            <section id="main">
-<div class="timeline timeline-wrap">
-    <div class="timeline-row timeline-row-major">
-        <span class="node"><i class="fa fa-tag"></i></span>
-        <h1 class="title">#排序</h1>
-    </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
+            <section id="main"><article id="post-插入排序" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
                 
     
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2015/07/28/插入排序/">插入排序</a>
+        <h1 class="article-title" itemprop="name">
+            插入排序
         </h1>
     
 
-                <div class="article-meta">
-                    
+                
+                    <div class="article-meta">
+                        
     <div class="article-date">
         <i class="fa fa-calendar"></i>
         <a href="/2015/07/28/插入排序/">
@@ -226,59 +226,188 @@
     </div>
 
 
-                    
+                        
     <div class="article-category">
     	<i class="fa fa-folder"></i>
         <a class="article-category-link" href="/categories/算法/">算法</a>
     </div>
 
-                    
+                        
     <div class="article-tag">
         <i class="fa fa-tag"></i>
         <a class="tag-link" href="/tags/排序/">排序</a>
     </div>
 
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
+                    </div>
                 
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2015/07/27/冒泡排序/">冒泡排序</a>
-        </h1>
-    
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <h1 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h1><p>每步将一个待排序的纪录，按其值的大小插入到前面已经排序的记录中适当位置上，直到全部插入完为止。</p>
+<a id="more"></a>
+<h1 id="java代码实现及流程"><a href="#java代码实现及流程" class="headerlink" title="java代码实现及流程"></a>java代码实现及流程</h1><p>利用冒泡排序对以下N个整数进行升序排序（N=5）： </p>
+<pre><code>13 27 49 35 4
+</code></pre><p><strong>步骤：</strong>  </p>
+<ol>
+<li>初始时，a[0]自成1个有序区，无序区为a[1…n-1]。令i=1。  </li>
+<li>将a[i]插入当前的有序区a[0…i-1]中形成a[0…i]的有序区间。  </li>
+<li>i++并重复第二步直到i==N-1，排序完成。</li>
+</ol>
+<p><span style="color:red"><b>注意：</b></span><br>在第二步中，待插入元素插入有序区时，一般做法是将待插入元素跟有序区元素逐个比较，直到找到待插入下标后，下标和下标后面的元素全部向后“挪动”一个位置，再将待插入元素插入到待插入下标。<br>关于这步，其实可以采用冒泡排序的思想，即将待插入元素跟有序区元素从后往前逐个比较，如果待插入元素比某个元素值小，则交换他们，直到遇到比某个元素大则插入结束。这种做法比传统的元素向后“挪动”效率更高。</p>
+<p><strong>代码：</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">InsertionSort</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</div><div class="line">	<span class="keyword">int</span> i, j;<span class="comment">//i为当前待插入元素下标，j初始为已排好序区间的最后一个元素</span></div><div class="line">	<span class="comment">//循环从已排好序区间后面，比较和i元素的大小，如果比i元素大，则交换位置，直到遇到比i元素小，则i元素排好序了</span></div><div class="line">	<span class="keyword">for</span> (i = <span class="number">1</span>; i &lt; arr.length; i++) &#123;</div><div class="line">		<span class="keyword">for</span> (j = i - <span class="number">1</span>; j &gt;= <span class="number">0</span> &amp;&amp; arr[j] &gt; arr[j + <span class="number">1</span>]; j--) &#123;</div><div class="line">			Swap(arr, j, j + <span class="number">1</span>);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>比较过程：</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">原始排序:</td>
+<td style="text-align:center">13 27 49 35 4</td>
+</tr>
+<tr>
+<td style="text-align:center">第0次插入后:</td>
+<td style="text-align:center">13 27 49 35 4</td>
+</tr>
+<tr>
+<td style="text-align:center">第1次插入后:</td>
+<td style="text-align:center">13 27 49 35 4</td>
+</tr>
+<tr>
+<td style="text-align:center">第2次插入后:</td>
+<td style="text-align:center">13 27 49 35 4</td>
+</tr>
+<tr>
+<td style="text-align:center">第3次插入后:</td>
+<td style="text-align:center">13 27 35 49 4</td>
+</tr>
+<tr>
+<td style="text-align:center">第4次插入后:</td>
+<td style="text-align:center">4 13 27 35 49</td>
+</tr>
+</tbody>
+</table>
 
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2015/07/27/冒泡排序/">
-            <time datetime="2015-07-27T08:45:53.000Z" itemprop="datePublished">2015-07-27</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/算法/">算法</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/排序/">排序</a>
-    </div>
-
-                </div>
-            </div>
+        
         </div>
-    
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+    <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more">分享到：</a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a>
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a>
+    <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博">腾讯微博</a>
+    <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网">人人网</a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信">微信</a>
 </div>
+<script>
+window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{"bdSize":16}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+<style>
+    .bdshare_popup_box {
+        border-radius: 4px;
+        border: #e1e1e1 solid 1px;
+    }
+    .bdshare-button-style0-16 a,
+    .bdshare-button-style0-16 .bds_more {
+        padding-left: 20px;
+        margin: 6px 10px 6px 0;
+    }
+    .bdshare_dialog_list a,
+    .bdshare_popup_list a,
+    .bdshare_popup_bottom a {
+        font-family: 'Microsoft Yahei';
+    }
+    .bdshare_popup_top {
+        display: none;
+    }
+    .bdshare_popup_bottom {
+        height: auto;
+        padding: 5px;
+    }
+</style>
+
+
+</div>
+
+            
+    
+        <a href="http://www.luorubin.top/2015/07/28/插入排序/#comments" class="article-comment-link ds-thread-count" data-thread-key="http://www.luorubin.top/2015/07/28/插入排序/">Comments</a>
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2015/07/27/冒泡排序/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">冒泡排序</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    <section id="comments">
+    
+        
+    <div class="ds-thread" data-thread-key="2015/07/28/插入排序/" data-title="插入排序" data-url="http://www.luorubin.top/2015/07/28/插入排序/"></div>
+    <style>
+        #ds-thread #ds-reset .ds-textarea-wrapper {
+            background: none;
+        }
+        #ds-reset .ds-avatar img {
+            box-shadow: none;
+        }
+        #ds-reset .ds-gradient-bg {
+            background: #f7f7f7;
+        }
+        #ds-thread #ds-reset li.ds-tab a {
+            border-radius: 3px;
+        }
+        #ds-thread #ds-reset .ds-post-button {
+            color: white;
+            border: none;
+            box-shadow: none;
+            background: #d32;
+            text-shadow: none;
+            font-weight: normal;
+            font-family: 'Microsoft Yahei';
+        }
+        #ds-thread #ds-reset .ds-post-button:hover {
+            color: white;
+            background: #DE594C;
+        }
+        #ds-thread #ds-reset .ds-post-button:active {
+            background: #d32;
+        }
+        #ds-smilies-tooltip ul.ds-smilies-tabs li a.ds-current {
+            color: white;
+            background: #d32;
+            box-shadow: none;
+            text-shadow: none;
+            font-weight: normal;
+        }
+    </style>
+
+    
+    </section>
+
 </section>
             
                 <aside id="sidebar">
