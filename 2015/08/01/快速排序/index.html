@@ -3,14 +3,18 @@
 <head>
     <meta charset="utf-8">
     
-    <title>Archive: 2015/7 | Robin&#39; s Blog</title>
+    <title>快速排序 | Robin&#39; s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Robin' s Blog">
-<meta property="og:url" content="http://www.luorubin.top/archives/2015/07/index.html">
+    <meta name="description" content="基本思想通过一趟排序将要排序的数据分割成独立的两部分，其中一部分的所有数据都比另外一部分的所有数据都要小，然后再按此方法对这两部分数据分别进行快速排序，整个排序过程可以递归进行，以此达到整个数据变成有序序列。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="快速排序">
+<meta property="og:url" content="http://www.luorubin.top/2015/08/01/快速排序/index.html">
 <meta property="og:site_name" content="Robin' s Blog">
+<meta property="og:description" content="基本思想通过一趟排序将要排序的数据分割成独立的两部分，其中一部分的所有数据都比另外一部分的所有数据都要小，然后再按此方法对这两部分数据分别进行快速排序，整个排序过程可以递归进行，以此达到整个数据变成有序序列。">
+<meta property="og:updated_time" content="2017-01-01T13:48:58.100Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Robin' s Blog">
+<meta name="twitter:title" content="快速排序">
+<meta name="twitter:description" content="基本思想通过一趟排序将要排序的数据分割成独立的两部分，其中一部分的所有数据都比另外一部分的所有数据都要小，然后再按此方法对这两部分数据分别进行快速排序，整个排序过程可以递归进行，以此达到整个数据变成有序序列。">
     
 
     
@@ -199,86 +203,177 @@
 </aside>
 
             
-            <section id="main"><div class="timeline timeline-wrap">
-    
-            <div class="timeline-row timeline-row-major">
-                <span class="node"><i class="fa fa-calendar"></i></span>
-                <h1 class="title">2015</h1>
-            </div>
+            <section id="main"><article id="post-快速排序" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
         
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
+        
+            <header class="article-header">
                 
     
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2015/07/28/插入排序/">插入排序</a>
+        <h1 class="article-title" itemprop="name">
+            快速排序
         </h1>
     
 
-                <div class="article-meta">
-                    
+                
+                    <div class="article-meta">
+                        
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2015/07/28/插入排序/">
-            <time datetime="2015-07-28T07:23:22.000Z" itemprop="datePublished">2015-07-28</time>
+        <a href="/2015/08/01/快速排序/">
+            <time datetime="2015-08-01T12:13:11.000Z" itemprop="datePublished">2015-08-01</time>
         </a>
     </div>
 
 
-                    
+                        
     <div class="article-category">
     	<i class="fa fa-folder"></i>
         <a class="article-category-link" href="/categories/算法/">算法</a>
     </div>
 
-                    
+                        
     <div class="article-tag">
         <i class="fa fa-tag"></i>
         <a class="tag-link" href="/tags/排序/">排序</a>
     </div>
 
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
+                    </div>
                 
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2015/07/27/冒泡排序/">冒泡排序</a>
-        </h1>
-    
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <h1 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h1><p>通过一趟排序将要排序的数据分割成独立的两部分，其中一部分的所有数据都比另外一部分的所有数据都要小，然后再按此方法对这两部分数据分别进行快速排序，整个排序过程可以递归进行，以此达到整个数据变成有序序列。</p>
+<a id="more"></a>
+<h1 id="java代码实现及流程"><a href="#java代码实现及流程" class="headerlink" title="java代码实现及流程"></a>java代码实现及流程</h1><p>利用快速排序对以下N个整数进行升序排序（N=5）： </p>
+<pre><code>13 27 49 35 4
+</code></pre><p><strong>步骤：</strong>  </p>
+<ol>
+<li>记下标s为0，下标e为（数组长度-1）。取出数组第一个元素作为基准元素（当一个元素从数组中被取出时，该元素所在位置相当于变成一个空的“桶”）。  </li>
+<li>从后往前遍历数组，每遍历一个元素就e–，当遇到比基准元素小的，a[e]放进“桶”。此时，a[e]所在位置变成“桶”。  </li>
+<li>从前往后遍历数组，每遍历一个元素就s++，当遇到比基准元素大的，a[s]放进“桶”。此时，a[s]所在位置变成“桶”。  </li>
+<li>当s == e时，此时a[s]和a[e]为同一个“桶”，把基准元素放进。到此步时，基准元素前面的元素都会比它小，基准元素后面的元素都会比它大。  </li>
+<li>a[0…s-1]和a[s+1…N-1]各自成一个区间，递归执行前三步，直到分割的区间只有一个元素。</li>
+</ol>
+<p><strong>代码：</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">QuickSort</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> l, <span class="keyword">int</span> h)</span></span>&#123;</div><div class="line">    <span class="keyword">if</span> (l &lt; h) &#123;</div><div class="line">        <span class="comment">//经过一趟排序后，上一趟的基准元素所在的正确位置</span></div><div class="line">        <span class="keyword">int</span> pivot = partion(arr, l, h);</div><div class="line">        <span class="comment">//对上一趟的基准元素前面的元素排序</span></div><div class="line">        QuickSort(arr, l, pivot - <span class="number">1</span>);</div><div class="line">        <span class="comment">//对上一趟的基准元素后面的元素排序</span></div><div class="line">        QuickSort(arr, pivot + <span class="number">1</span>, h);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">partion</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> start, <span class="keyword">int</span> end)</span> </span>&#123;</div><div class="line">    <span class="comment">//一趟排序后的目标：所有比基准小的在基准前，比基准大的在基准后</span></div><div class="line">    </div><div class="line">    <span class="keyword">int</span> tmp = arr[start];<span class="comment">//选第一个元素为基点</span></div><div class="line">    <span class="keyword">while</span> (start &lt; end) &#123;</div><div class="line">        <span class="comment">//从后面起，比基准大的，略过这个元素，直到找的一个比基准小的</span></div><div class="line">        <span class="keyword">while</span> (arr[end] &gt;= tmp &amp;&amp; start &lt; end)</div><div class="line">            end--;</div><div class="line">        </div><div class="line">        <span class="keyword">if</span> (start &lt; end) &#123;</div><div class="line">            <span class="comment">//经过前面从后往前的遍历后，如果s小于e，则说明找到了一个比基准小的元素，把这个元素赋值到s后s++</span></div><div class="line">            arr[start++] = arr[end];</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">while</span> (arr[start] &lt; tmp &amp;&amp; start &lt; end)</div><div class="line">            <span class="comment">//从前面起，比基准小的，略过这个元素，直到找的一个比基准大的</span></div><div class="line">            start++;</div><div class="line">        </div><div class="line">        <span class="keyword">if</span> (start &lt; end) &#123;</div><div class="line">            <span class="comment">//经过前面从前往后的遍历后，如果s小于e，则说明找到了一个比基准大的元素，把这个元素赋值到e后e--</span></div><div class="line">            arr[end--] = arr[start];</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//经过以上从后往前、从前往后的两个遍历，此时s等于e，把基准元素赋值进去</span></div><div class="line">    arr[start] = tmp;</div><div class="line">    <span class="keyword">return</span> start;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2015/07/27/冒泡排序/">
-            <time datetime="2015-07-27T08:45:53.000Z" itemprop="datePublished">2015-07-27</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/算法/">算法</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/排序/">排序</a>
-    </div>
-
-                </div>
-            </div>
+        
         </div>
-    
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+    <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more">分享到：</a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a>
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a>
+    <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博">腾讯微博</a>
+    <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网">人人网</a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信">微信</a>
 </div>
+<script>
+window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{"bdSize":16}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+<style>
+    .bdshare_popup_box {
+        border-radius: 4px;
+        border: #e1e1e1 solid 1px;
+    }
+    .bdshare-button-style0-16 a,
+    .bdshare-button-style0-16 .bds_more {
+        padding-left: 20px;
+        margin: 6px 10px 6px 0;
+    }
+    .bdshare_dialog_list a,
+    .bdshare_popup_list a,
+    .bdshare_popup_bottom a {
+        font-family: 'Microsoft Yahei';
+    }
+    .bdshare_popup_top {
+        display: none;
+    }
+    .bdshare_popup_bottom {
+        height: auto;
+        padding: 5px;
+    }
+</style>
+
+
+</div>
+
+            
+    
+        <a href="http://www.luorubin.top/2015/08/01/快速排序/#comments" class="article-comment-link ds-thread-count" data-thread-key="http://www.luorubin.top/2015/08/01/快速排序/">Comments</a>
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2015/07/28/插入排序/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">插入排序</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    <section id="comments">
+    
+        
+    <div class="ds-thread" data-thread-key="2015/08/01/快速排序/" data-title="快速排序" data-url="http://www.luorubin.top/2015/08/01/快速排序/"></div>
+    <style>
+        #ds-thread #ds-reset .ds-textarea-wrapper {
+            background: none;
+        }
+        #ds-reset .ds-avatar img {
+            box-shadow: none;
+        }
+        #ds-reset .ds-gradient-bg {
+            background: #f7f7f7;
+        }
+        #ds-thread #ds-reset li.ds-tab a {
+            border-radius: 3px;
+        }
+        #ds-thread #ds-reset .ds-post-button {
+            color: white;
+            border: none;
+            box-shadow: none;
+            background: #d32;
+            text-shadow: none;
+            font-weight: normal;
+            font-family: 'Microsoft Yahei';
+        }
+        #ds-thread #ds-reset .ds-post-button:hover {
+            color: white;
+            background: #DE594C;
+        }
+        #ds-thread #ds-reset .ds-post-button:active {
+            background: #d32;
+        }
+        #ds-smilies-tooltip ul.ds-smilies-tabs li a.ds-current {
+            color: white;
+            background: #d32;
+            box-shadow: none;
+            text-shadow: none;
+            font-weight: normal;
+        }
+    </style>
+
+    
+    </section>
+
 </section>
             
                 <aside id="sidebar">
